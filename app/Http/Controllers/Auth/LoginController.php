@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -30,5 +31,14 @@ class LoginController extends Controller
         return back()->withErrors([
             'login' => 'The provided credentials do not match our records.',
         ])->withInput();
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+
+        Session::invalidate();
+
+        return redirect()->route('auth.login');
     }
 }
