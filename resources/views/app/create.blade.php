@@ -1,6 +1,6 @@
 @extends('app.layout')
 
-@section('title', 'Dashboard')
+@section('title', 'Upload Receipt')
 
 @section('content')
     <h4 class="py-3 mb-4">
