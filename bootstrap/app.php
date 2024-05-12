@@ -21,8 +21,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 return route('dashboard');
             } elseif (request()->user()->role === Roles::UPLOADER) {
                 return route('receipts.create');
-            }
+            } else
+                return route('receipts.validate.unvalidated');
         });
+
+        $middleware->validateCsrfTokens(except: ['/login']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
