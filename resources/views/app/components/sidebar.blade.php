@@ -64,20 +64,39 @@
     <ul class="menu-inner py-1 justify-content-between">
 
         <!-- Apps & Pages -->
-        <div>
-            <li class="menu-item">
-                <a href="{{ route('receipts.create') }}" class="menu-link">
-                    <i class="menu-icon tf-icons mdi mdi-cloud-upload-outline"></i>
-                    <div data-i18n="Upload Receipt">Upload Receipt</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('receipts.index') }}" class="menu-link">
-                    <i class="menu-icon tf-icons mdi mdi-receipt-text-outline"></i>
-                    <div data-i18n="Uploaded Receipts">Uploaded Receipts</div>
-                </a>
-            </li>
-        </div>
+        @isUploader
+            <div>
+                <li class="menu-item">
+                    <a href="{{ route('receipts.create') }}" class="menu-link">
+                        <i class="menu-icon tf-icons mdi mdi-cloud-upload-outline"></i>
+                        <div data-i18n="Upload Receipt">Upload Receipt</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('receipts.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons mdi mdi-receipt-text-outline"></i>
+                        <div data-i18n="Uploaded Receipts">Uploaded Receipts</div>
+                    </a>
+                </li>
+            </div>
+        @endisUploader
+
+        @isValidator
+            <div>
+                <li class="menu-item">
+                    <a href="{{ route('receipts.validate.unvalidated') }}" class="menu-link">
+                        <i class="menu-icon tf-icons mdi mdi-cloud-upload-outline"></i>
+                        <div data-i18n="Unvalidated Receipts">Unvalidated Receipts</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('receipts.validate.validated') }}" class="menu-link">
+                        <i class="menu-icon tf-icons mdi mdi-receipt-text-outline"></i>
+                        <div data-i18n="Validated Receipts">Validated Receipts</div>
+                    </a>
+                </li>
+            </div>
+        @endisValidator
 
         <!-- Misc -->
         <div>
