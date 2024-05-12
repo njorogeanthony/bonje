@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\ValidateReceiptController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -12,5 +13,11 @@ Route::middleware('auth')->group(function () {
         Route::get('edit/{receipt}', [ReceiptController::class, 'edit'])->name('edit');
         Route::put('update/{receipt}', [ReceiptController::class, 'update'])->name('update');
         Route::delete('destroy/{receipt}', [ReceiptController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name("receipts.validate.")->prefix("receipts/validate/")->group(function () {
+        Route::get('unvalidated', [ValidateReceiptController::class, 'unvalidated'])->name('unvalidated');
+        Route::get('validate/{receipt}', [ValidateReceiptController::class, 'validate'])->name('validate');
+        Route::get('validated', [ValidateReceiptController::class, 'validated'])->name('validated');
     });
 });
