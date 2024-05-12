@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Support\Enums\Roles;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $rememberMe)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            $user = Auth::user();
+
+            if ($user->role === Roles::ADMIN) {
+                return redirect()->intended(route('dashboard'));
+            } elseif ($user->role === Roles::UPLOADER) {
+                return redirect()->intended(route('receipts.create'));
+            }
         }
 
         return back()->withErrors([
