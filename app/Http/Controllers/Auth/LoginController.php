@@ -32,7 +32,8 @@ class LoginController extends Controller
                 return redirect()->intended(route('dashboard'));
             } elseif ($user->role === Roles::UPLOADER) {
                 return redirect()->intended(route('receipts.create'));
-            }
+            } else
+                return redirect()->intended(route('receipts.validate.unvalidated'));
         }
 
         return back()->withErrors([
