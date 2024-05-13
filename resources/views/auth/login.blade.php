@@ -51,7 +51,6 @@
         <!-- /Logo -->
 
         <div class="card-body mt-2">
-            <h4 class="mb-2 text-center">Welcome</h4>
             <p class="mb-4 text-center">Please sign-in to your account to continue</p>
 
             <form id="formAuthentication" class="mb-3" action="{{ route('auth.login.post') }}" method="POST">
